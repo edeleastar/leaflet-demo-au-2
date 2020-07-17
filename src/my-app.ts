@@ -1,4 +1,4 @@
-import { LeafletMap } from "services/leaflet-map";
+import { LeafletMap } from "./services/leaflet-map";
 
 export class MyApp {
   public message = 'Hello World!';
