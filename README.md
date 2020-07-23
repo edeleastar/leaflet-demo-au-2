@@ -1,37 +1,25 @@
 # leaflet-au-2
 
-This project is bootstrapped by [aurelia/new](https://github.com/aurelia/new).
+Illustration of Leaflet map issue in Au 2 - within a component loaded by the new router.
 
-## Start dev web server
+The map displays fine in the my-app component. However, the identical code in routes/home fails.
 
-    npm start
+This is currently commented out:
+~~~
+export class Home implements IViewModel {
+  ...
+  map: LeafletMap;
 
-## Build the app in production mode
+  afterAttach() {
+    //this.map = new LeafletMap(this.mapDescriptor);
+  }
+~~~
 
-    npm run build
+But when included, container not found exception thrown from leaflet
 
-It builds all files to dist folder. To deploy to production server, copy all the `dist/*` files to production root folder.
-
-For example
-```
-dist/index.html
-dist/foo.12345.js
-```
-Copy to production root folder
-```
-root_folder/index.html
-root_folder/foo.12345.js
-```
-
-## Unit Tests
-
-    npm run test
-
-Run unit tests in watch mode.
-
-    npm run test:watch
-
-
-## Analyze webpack bundle
-
-    npm run analyze
+~~~
+Uncaught (in promise) Error: Map container not found.
+    at NewClass._initContainer (entry-bundle.js:39606)
+    at NewClass.initialize (entry-bundle.js:38640)
+    ...
+~~~
